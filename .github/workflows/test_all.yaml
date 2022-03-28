@@ -1,0 +1,25 @@
+name: test-all
+
+on:
+  push:
+    branches:
+      - master
+  workflow_dispatch:
+
+jobs:
+  test-all:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v3
+
+      - name: Run all tests
+        run: |
+          python -m pytest --cov=src --junitxml=pytest-report.xml --cov-report=xml tests/unit
+
+      - name: Upload all coverage
+        uses: codecov/codecov-action@v2
+        with:
+          files: coverage.xml
+          fail_ci_if_error: false
+          verbose: true
