@@ -27,7 +27,7 @@ jobs:
         run: |
           python -m pytest --cov=src/demo --cov-report=xml tests/unit/demo
 
-      - name: Upload all coverage
+      - name: Upload demo coverage
         uses: codecov/codecov-action@v2
         with:
           files: coverage.xml

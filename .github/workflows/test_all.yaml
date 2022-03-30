@@ -27,10 +27,26 @@ jobs:
         run: |
           python -m pytest --cov=src --junitxml=pytest-report.xml --cov-report=xml tests/unit
 
-      - name: Upload all coverage
+      - name: Run demo test
+        run: |
+          python -m pytest --cov=src/demo --cov-report=xml tests/unit/demo
+
+      - name: Upload demo coverage
         uses: codecov/codecov-action@v2
         with:
           files: coverage.xml
           fail_ci_if_error: false
           verbose: true
-          flags: index,demo
+          flags: demo
+
+      - name: Run index test
+        run: |
+          python -m pytest --cov=src/index --cov-report=xml tests/unit/index
+
+      - name: Upload index coverage
+        uses: codecov/codecov-action@v2
+        with:
+          files: coverage.xml
+          fail_ci_if_error: false
+          verbose: true
+          flags: index
