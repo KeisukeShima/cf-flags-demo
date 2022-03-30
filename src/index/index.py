@@ -11,3 +11,8 @@ class Index(object):
   def uncovered(self):
       return True
 
+  def another_uncovered_function(self):
+      return True
+
+  def another_covered_function(self):
+      return True
